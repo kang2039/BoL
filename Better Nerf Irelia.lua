@@ -19,11 +19,11 @@ if IRELIAAUTOUPDATE then
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)
-            if tonumber(IRELIAVERSION) < ServerVersion then
+            if tonumber(IRELIAversion) < ServerVersion then
                 AutoupdaterMsg("A new version is available: ["..ServerVersion.."]")
                 AutoupdaterMsg("The script is updating... please don't press [F9]!")
                 DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function ()
-				AutoupdaterMsg("Successfully updated! ("..IRELIAVERSION.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
+				AutoupdaterMsg("Successfully updated! ("..IRELIAversion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
             else
                 AutoupdaterMsg("Your script is already the latest version: ["..ServerVersion.."]")
             end

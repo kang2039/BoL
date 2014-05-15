@@ -11,8 +11,8 @@ local UPDATE_PATH = "/si7ziTV/BoL/blob/master/Better%20Nerf%20Irelia.lua?chunk="
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
-function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">[".._G.IsLoaded.."]:</font> <font color=\"#FFDFBF\">"..msg..".</font>") end
-if _G.IRELIAAUTOUPDATE then
+function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">["..IsLoaded.."]:</font> <font color=\"#FFDFBF\">"..msg..".</font>") end
+if IRELIAAUTOUPDATE then
     local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
     if ServerData then
         local ServerVersion = string.match(ServerData, "IreliaVersion = \"%d+.%d+\"")

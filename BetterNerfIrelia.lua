@@ -1,9 +1,12 @@
---[[better nerf Irelia by si7ziTV ]]--
+--[[BetterNerfIrelia by si7ziTV ]]--
+
+if myHero.charName ~= "Irelia" then return end
+local version = 1.05
 
 local autoupdateenabled = true
-local UPDATE_SCRIPT_NAME = "Better Nerf Irelia"
+local UPDATE_SCRIPT_NAME = "BetterNerfIrelia"
 local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/si7ziTV/BoL/BetterNerfIrelia.lua"
+local UPDATE_PATH = "/si7ziTV/BoL/master/BetterNerfIrelia.lua"
 local UPDATE_FILE_PATH = SCRIPT_PATH..GetCurrentEnv().FILE_NAME
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
@@ -30,11 +33,9 @@ if autoupdateenabled then
 		end
 	end
 	AddTickCallback(update)
-end  
+end
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
-if myHero.charName ~= "Irelia" then return end
  
 local Config
 local ts
@@ -91,6 +92,7 @@ Config:addParam("Author","Developer: si7ziTV",5,"")
 		--Config.Combo:addParam("useQ", "Use (R)", SCRIPT_PARAM_ONKEYTOGGLE, false, 68)
 		--Config.Combo:addParam("useItems", "Use Items in Combo", SCRIPT_PARAM_ONOFF, true)
 		--Config.Combo:addParam("ComboKey", "Combo (32)", SCRIPT_PARAM_ONKEYDOWN, false, 32)
+		--Config.Combo:addParam("SmartComboKey", "SCombo (33)", SCRIPT_PARAM_ONOFF, true)
 		--Config.Combo:addParam("orbwalker", "Move to Mouse", SCRIPT_PARAM_ONOFF, true)
 		--Config.Combo:permaShow("ComboKey")
 
@@ -169,7 +171,7 @@ ts:update()
 MyMinionManager:update()
 EnemyMinionManager:update()
  
-if myHero.dead then return end
+if not myHero.dead then return end
 
 if Config.Misc.Evadeee then
 			_EvadeeeIntegration()

@@ -1,7 +1,7 @@
-_G.IreliaVersion = "1.05"
-_G.IRELIAAUTOUPDATE = true
-_G.IreliaAuthor = "si7ziTV"
-_G.IsLoaded = "Better Nerf Irelia"
+local IreliaVersion = "1.05"
+local IRELIAAUTOUPDATE = true
+local IreliaAuthor = "si7ziTV"
+local IsLoaded = "Better Nerf Irelia"
 if myHero.charName ~= "Irelia" then return end
 
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
@@ -15,15 +15,15 @@ function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">[".._G.IsLoaded.."]:
 if _G.IRELIAAUTOUPDATE then
     local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
     if ServerData then
-        local ServerVersion = string.match(ServerData, "_G.IreliaVersion = \"%d+.%d+\"")
+        local ServerVersion = string.match(ServerData, "IreliaVersion = \"%d+.%d+\"")
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)
-            if tonumber(_G.IreliaVersion) < ServerVersion then
+            if tonumber(IreliaVersion) < ServerVersion then
                 AutoupdaterMsg("A new version is available: ["..ServerVersion.."]")
                 AutoupdaterMsg("The script is updating... please don't press [F9]!")
                 DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function ()
-				AutoupdaterMsg("Successfully updated! (".._G.IreliaVersion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
+				AutoupdaterMsg("Successfully updated! ("..IreliaVersion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
             else
                 AutoupdaterMsg("Your script is already the latest version: ["..ServerVersion.."]")
             end

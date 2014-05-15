@@ -1,4 +1,4 @@
-local IRELIAVersion = "1.00"
+local IRELIAVersion = "1.05"
 local IRELIAAUTOUPDATE = true
 local IreliaAuthor = "si7ziTV"
 local IsLoaded = "Better Nerf Irelia"

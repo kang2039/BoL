@@ -7,7 +7,7 @@ if myHero.charName ~= "Irelia" then return end
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_NAME = "Better Nerf Irelia"
 local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)
+local UPDATE_PATH = "/si7ziTV/BoL/blob/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
@@ -15,7 +15,7 @@ function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">["..IsLoaded.."]:</f
 if IRELIAAUTOUPDATE then
     local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
     if ServerData then
-        local ServerVersion = string.match(ServerData, "IRELIAVersion = \"%d+.%d+\"")
+        local ServerVersion = string.match(ServerData, "IRELIAVERSION = \"%d+.%d+\"")
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)

@@ -1,4 +1,4 @@
-local IreliaVersion = "1.05"
+IreliaVersion = "1.05"
 local IRELIAAUTOUPDATE = true
 local IreliaAuthor = "si7ziTV"
 local IsLoaded = "Better Nerf Irelia"
@@ -11,27 +11,19 @@ local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..mat
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
-function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">["..IsLoaded.."]:</font> <font color=\"#FFDFBF\">"..msg..".</font>") end
+function AutoupdaterMsg(msg) print(IsLoaded..msg) end
 if IRELIAAUTOUPDATE then
-		if IRELIAAUTOUPDATE then
-		print("IRELIAAUTOUPDATE detected") end
     local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
-    if ServerData then 
+    if ServerData then
         local ServerVersion = string.match(ServerData, "IreliaVersion = \"%d+.%d+\"")
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
-				if ServerData then
-				print("ServerData detected") end
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)
-						if ServerVersion then
-						print("ServerVersion detected") end
             if tonumber(IreliaVersion) < ServerVersion then
                 AutoupdaterMsg("A new version is available: ["..ServerVersion.."]")
                 AutoupdaterMsg("The script is updating... please don't press [F9]!")
                 DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function ()
-				AutoupdaterMsg("Successfully updated! ("..IreliaVersion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
-						if tonumber(IreliaVersion) < ServerVersion then
-						print("tonnumber(IreliaVresion) < ServerVersion detected") end
+				AutoupdaterMsg("Successfully updated! ("..IreliaVersion.." -> "..ServerVersion.."), Please reload for the updated version!") end) end, 3)
             else
                 AutoupdaterMsg("Your script is already the latest version: ["..ServerVersion.."]")
             end
@@ -87,8 +79,9 @@ end
 function _load_menu()
 --Menu
 Config = scriptConfig("Irelia", "Irelia")
-Config:addParam("Author","Developer: si7ziTV",5,"")
-	
+
+	Config:addParam("Version", "Version", SCRIPT_PARAM_INFO, IreliaVersion)
+	Config:addParam("Author", "Author", SCRIPT_PARAM_INFO, IreliaAuthor)	
 --Combo Menu	
 	--Config:addSubMenu("Combo", "Combo")
 			--Config.Combo:addSubMenu("Teamfight", "Teamfight")

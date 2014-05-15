@@ -4,7 +4,7 @@ local IreliaAuthor = "si7ziTV"
 local IsLoaded = "Better Nerf Irelia"
 if myHero.charName ~= "Irelia" then return end
 
-local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia"
+local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_NAME = "Better Nerf Irelia"
 local UPDATE_HOST = "raw.github.com"
 local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)

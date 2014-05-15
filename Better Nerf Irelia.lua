@@ -7,23 +7,31 @@ if myHero.charName ~= "Irelia" then return end
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_NAME = "Better Nerf Irelia"
 local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia?chunk="..math.random(1, 1000)
+local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
 function AutoupdaterMsg(msg) print("<font color=\"#73DCFF\">["..IsLoaded.."]:</font> <font color=\"#FFDFBF\">"..msg..".</font>") end
 if IRELIAAUTOUPDATE then
+		if IRELIAAUTOUPDATE then
+		print("IRELIAAUTOUPDATE detected") end
     local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
-    if ServerData then
+    if ServerData then 
         local ServerVersion = string.match(ServerData, "IreliaVersion = \"%d+.%d+\"")
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
+				if ServerData then
+				print("ServerData detected") end
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)
+						if ServerVersion then
+						print("ServerVersion detected") end
             if tonumber(IreliaVersion) < ServerVersion then
                 AutoupdaterMsg("A new version is available: ["..ServerVersion.."]")
                 AutoupdaterMsg("The script is updating... please don't press [F9]!")
                 DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function ()
 				AutoupdaterMsg("Successfully updated! ("..IreliaVersion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
+						if tonumber(IreliaVersion) < ServerVersion then
+						print("tonnumber(IreliaVresion) < ServerVersion detected") end
             else
                 AutoupdaterMsg("Your script is already the latest version: ["..ServerVersion.."]")
             end

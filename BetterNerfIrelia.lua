@@ -1,7 +1,7 @@
 --[[BetterNerfIrelia by si7ziTV ]]--
 
+local version = 1.01
 if myHero.charName ~= "Irelia" then return end
-local version = 1.05
 
 local autoupdateenabled = true
 local UPDATE_SCRIPT_NAME = "BetterNerfIrelia"
@@ -155,13 +155,7 @@ Config:addParam("Author","Developer: si7ziTV",5,"")
  end
  
 function OnTick() 
-	
-	if myHero:GetSpellData(SUMMONER_1).name:find("SummonerDot") then
-           ignite = SUMMONER_1
-           elseif myHero:GetSpellData(SUMMONER_2).name:find("SummonerDot") then
-           ignite = SUMMONER_2
-        end
-	iready = (myHero:CanUseSpell(ignite) == READY)
+
 	Qready = (myHero:CanUseSpell(_Q) == READY)
 	Wready = (myHero:CanUseSpell(_W) == READY)
 	Eready = (myHero:CanUseSpell(_E) == READY)
@@ -171,7 +165,7 @@ ts:update()
 MyMinionManager:update()
 EnemyMinionManager:update()
  
-if not myHero.dead then return end
+if myHero.dead then return end
 
 if Config.Misc.Evadeee then
 			_EvadeeeIntegration()
@@ -181,9 +175,6 @@ if Config.killsteal.killsteal then
 				_killsteal()
 end
 			
-if Config.killsteal.ignite then
-				_ignite()
-end
 
 if Config.Fa.clear.clear then
 				_wclear() 
@@ -231,18 +222,6 @@ function _killsteal()
 			end
 		end
 	end
-end
-
---[Auto Ignite]--
-function _ignite()
-local Enemies = GetEnemyHeroes()
-for i, enemy in pairs(Enemies) do
-  if  enemy.health <= getDmg("IGNITE", enemy, myHero) and GetDistance(enemy) <= 600 then
-   if iready then 
-   CastSpell(ignite, Target) 
-    end
-  end
- end
 end
 
 --[Mana Management]--

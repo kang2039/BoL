@@ -1,4 +1,4 @@
-local IRELIAVersion = "1.05"
+local IRELIAVERSION = "1.05"
 local IRELIAAUTOUPDATE = true
 local IreliaAuthor = "si7ziTV"
 local IsLoaded = "Better Nerf Irelia"
@@ -7,7 +7,7 @@ if myHero.charName ~= "Irelia" then return end
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia"
 local UPDATE_NAME = "Better Nerf Irelia"
 local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/si7ziTV/BoL/blob/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)
+local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..math.random(1, 1000)
 local UPDATE_FILE_PATH = SCRIPT_PATH.."Better Nerf Irelia.lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
@@ -19,11 +19,11 @@ if IRELIAAUTOUPDATE then
         ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
         if ServerVersion then
             ServerVersion = tonumber(ServerVersion)
-            if tonumber(IRELIAversion) < ServerVersion then
+            if tonumber(IRELIAVERSION) < ServerVersion then
                 AutoupdaterMsg("A new version is available: ["..ServerVersion.."]")
                 AutoupdaterMsg("The script is updating... please don't press [F9]!")
                 DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function ()
-				AutoupdaterMsg("Successfully updated! ("..IRELIAversion.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
+				AutoupdaterMsg("Successfully updated! ("..IRELIAVERSION.." -> "..ServerVersion.."), Please reload (double [F9]) for the updated version!") end) end, 3)
             else
                 AutoupdaterMsg("Your script is already the latest version: ["..ServerVersion.."]")
             end
@@ -32,7 +32,7 @@ if IRELIAAUTOUPDATE then
         AutoupdaterMsg("Error downloading version info!")
     end
 end
-  
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
 local Config

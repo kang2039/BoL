@@ -10,8 +10,8 @@ local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..mat
 local UPDATE_FILE_PATH = SCRIPT_PATH..UPDATE_NAME..".lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
-function AutoupdaterMsg(msg) print("<font color=\"#FF0000\">"..UPDATE_NAME..":</font> <font color=\"#FFFFFF\">"..msg..".</font>") end
 if IRELIAAUTOUPDATE then
+print("<font color=\"#FF0000\">"..UPDATE_NAME..":</font> <font color=\"#FFFFFF\">"..msg..".</font>") 
 	local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
 	if ServerData then
 		local ServerVersion = string.match(ServerData, "local version = \"%d+.%d+\"")

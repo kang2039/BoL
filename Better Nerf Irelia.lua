@@ -11,8 +11,7 @@ local UPDATE_FILE_PATH = SCRIPT_PATH..UPDATE_NAME..".lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
 if IRELIAAUTOUPDATE then
-print("<font color=\"#FF0000\">"..UPDATE_NAME..":</font> <font color=\"#FFFFFF\">"..msg..".</font>") 
-	local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
+local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
 	if ServerData then
 		local ServerVersion = string.match(ServerData, "local version = \"%d+.%d+\"")
 		ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
@@ -339,3 +338,4 @@ function _draw_minion_transparence()
 		end
 	end
 end
+

@@ -60,14 +60,14 @@ local Rdamage = {320, 480, 640}
 local Rmana = {100, 100, 100} 
  
 function OnLoad()
-_load_menu()
-_init()
+Menu()
+init()
 PrintChat("<font color=\"#FE642E\"><b>" ..">>  Better nerf Irelia</b> by si7ziTV has been loaded")
 Loaded = true;
 end
 
 
-function _init() 
+function init() 
 EnemyMinionManager = minionManager(MINION_ENEMY,Qrange, myHero, MINION_SORT_MAXHEALTH_DEC)
 MyMinionManager = minionManager(MINION_JUNGLE, Qrange, myHero, MINION_SORT_MAXHEALTH_DEC)
 ts = TargetSelector(TARGET_LOW_HP,650,DAMAGE_PHYSICAL) -- (mode, range, damageType)
@@ -78,7 +78,7 @@ if _G.Evadeee_Loaded then
 end 
 end 
 
-function _load_menu()
+function Menu()
 --Menu
 Config = scriptConfig("Irelia", "Irelia")
 

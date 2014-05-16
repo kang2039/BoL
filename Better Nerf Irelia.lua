@@ -28,7 +28,7 @@ if IRELIAAUTOUPDATE then
 			if ServerVersion ~= nil and tonumber(ServerVersion) ~= nil and tonumber(ServerVersion) > tonumber(version) then
 				DownloadFile(UPDATE_URL.."?rand="..math.random(1,1000), UPDATE_FILE_PATH, function () print("<font color=\"#FF0000\"><b>"..UPDATE_SCRIPT_NAME..":</b> successfully updated. Reload (double F9) Please. ("..version.." => "..ServerVersion..")</font>") end)     
 			elseif ServerVersion then
-				print("<font color=\"#FF0000\"><b>"..UPDATE_SCRIPT_NAME..":</b> You have got the latest version: <u><b>"..ServerVersion.."</b></u></font>")
+				print("<font color=\"#FF0000\"><b>"..UPDATE_NAME..":</b> You have got the latest version: <u><b>"..ServerVersion.."</b></u></font>")
 			end		
 			ServerData = nil
 		end

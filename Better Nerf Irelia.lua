@@ -10,24 +10,30 @@ local UPDATE_PATH = "/si7ziTV/BoL/master/Better%20Nerf%20Irelia.lua?chunk="..mat
 local UPDATE_FILE_PATH = SCRIPT_PATH..UPDATE_NAME..".lua"
 local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
 
+
+local ServerData
 if IRELIAAUTOUPDATE then
-local ServerData = GetWebResult(UPDATE_HOST, UPDATE_PATH)
-	if ServerData then
-		local ServerVersion = string.match(ServerData, "local version = \"%d+.%d+\"")
-		ServerVersion = string.match(ServerVersion and ServerVersion or "", "%d+.%d+")
-		if ServerVersion then
-			ServerVersion = tonumber(ServerVersion)
-			if tonumber(version) < ServerVersion then
-				AutoupdaterMsg("New version available"..ServerVersion)
-				AutoupdaterMsg("Updating, please don't press F9")
-				DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function () AutoupdaterMsg("Successfully updated. ("..version.." => "..ServerVersion.."), press F9 twice to load the updated version.") end)	 
-			else
-				AutoupdaterMsg("You have got the latest version ("..ServerVersion..")")
+	GetAsyncWebResult(UPDATE_HOST, UPDATE_PATH.."?rand="..math.random(1,1000), function(d) ServerData = d end)
+	function update()
+		if ServerData ~= nil then
+			local ServerVersion
+			local send, tmp, sstart = nil, string.find(ServerData, "local version = \"")
+			if sstart then
+				send, tmp = string.find(ServerData, "\"", sstart+1)
 			end
+			if send then
+				ServerVersion = tonumber(string.sub(ServerData, sstart+1, send-1))
+			end
+
+			if ServerVersion ~= nil and tonumber(ServerVersion) ~= nil and tonumber(ServerVersion) > tonumber(version) then
+				DownloadFile(UPDATE_URL.."?rand="..math.random(1,1000), UPDATE_FILE_PATH, function () print("<font color=\"#FF0000\"><b>"..UPDATE_SCRIPT_NAME..":</b> successfully updated. Reload (double F9) Please. ("..version.." => "..ServerVersion..")</font>") end)     
+			elseif ServerVersion then
+				print("<font color=\"#FF0000\"><b>"..UPDATE_SCRIPT_NAME..":</b> You have got the latest version: <u><b>"..ServerVersion.."</b></u></font>")
+			end		
+			ServerData = nil
 		end
-	else
-		AutoupdaterMsg("Error downloading version info")
 	end
+	AddTickCallback(update)
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -338,4 +344,3 @@ function _draw_minion_transparence()
 		end
 	end
 end
-

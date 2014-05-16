@@ -56,23 +56,22 @@ local Rmana = {100, 100, 100}
  
 function OnLoad()
 _load_menu()
---Script load
+_init()
 PrintChat("<font color=\"#FE642E\"><b>" ..">>  Better nerf Irelia</b> by si7ziTV has been loaded")
+Loaded = true;
+end
 
+
+function _init() 
 EnemyMinionManager = minionManager(MINION_ENEMY,Qrange, myHero, MINION_SORT_MAXHEALTH_DEC)
 MyMinionManager = minionManager(MINION_JUNGLE, Qrange, myHero, MINION_SORT_MAXHEALTH_DEC)
- 
 ts = TargetSelector(TARGET_LOW_HP,650,DAMAGE_PHYSICAL) -- (mode, range, damageType)
-    ts.name = "Irelia"
-    --Config.Combo:addTS(ts)
- 
- 
-
+ts.name = "Irelia"
 --Evadeee integration
 if _G.Evadeee_Loaded then
  _G.Evadeee_Enabled = true
-end
-end
+end 
+end 
 
 function _load_menu()
 --Menu
@@ -152,7 +151,7 @@ Config = scriptConfig("Irelia", "Irelia")
  end
  
 function OnTick() 
-
+if Loaded then 
 	Qready = (myHero:CanUseSpell(_Q) == READY)
 	Wready = (myHero:CanUseSpell(_W) == READY)
 	Eready = (myHero:CanUseSpell(_E) == READY)
@@ -178,6 +177,7 @@ if Config.Fa.clear.clear then
 			end
 	
 end
+end 
 
 function _EvadeeeIntegration()
 	local minion = EnemyMinionManager.objects[1]
